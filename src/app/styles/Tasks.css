@@ -1,0 +1,154 @@
+.Tasks-Container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  padding: 10rem 20rem 5rem 20rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.Tasks-SubContainer{
+  width: 100%;
+}
+
+.Tasks-SingleContainer{
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background-color:rgb(197, 197, 197);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+input[type="checkbox"]{
+  appearance: none;
+  -webkit-appearance: none;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 2px solid #292929;
+  border-radius: 50%;
+  transition: opacity 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+
+input[type="checkbox"]:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+input[type="checkbox"]:disabled{
+  opacity: 0.5;
+  cursor: default;
+}
+
+input[type="checkbox"]::after{
+  content: "";
+  width: 1.4rem;
+  height: 1.4rem;
+  position: absolute;
+  background-color: #292929;
+  border-radius: 50%;
+  opacity: 0.5;
+  display: none;
+}
+
+input[type="checkbox"]:checked::after{
+  display: block;
+}
+
+.Tasks-Label{
+  margin: 0;
+  margin-left: 1rem;
+  padding: 0;
+  font-size: 1.3rem;
+  flex-grow: 1;
+}
+
+.Tasks-Paragraph:hover {
+  cursor: text;
+}
+
+.Tasks-CreateButton{
+  box-sizing: border-box;
+  background-color:rgb(197, 197, 197);
+  border: none;
+  padding: 1rem;  
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  color: #292929;
+  transition: all 0.3s ease;
+  font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';}
+
+.Tasks-CreateButton:hover {
+  background-color: #292929;
+  color: rgb(197, 197, 197);
+  cursor: pointer;
+}
+
+.Tasks-CreatingContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  background-color:rgb(197, 197, 197);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.Tasks-FormContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  width: 100%;
+}
+
+.Tasks-CreatingSubContainer{
+  width: 100%;
+  display: flex ;
+}
+
+.Tasks-Input{
+  background-color: transparent;
+  border: none;
+  margin-left: 1rem;
+  font-size: 1.3rem;
+  flex-grow: 1;
+  color: #292929;
+  font-weight: 500;
+  font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';}
+
+.Tasks-Input:focus{
+  outline: none;
+}
+
+.Tasks-SaveButton{
+  background-color: transparent;
+  border-radius: 0.7rem ;
+  font-size: 1.3rem;
+  color: #292929;
+  font-weight: 500;
+  border: 2px solid #292929;
+  padding: 0 1rem;
+  font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';
+  transition: all 0.2s ease;
+}
+
+.Tasks-SaveButton:hover {
+  background-color: #292929;
+  color:rgb(197, 197, 197);
+  cursor: pointer;
+}
+
