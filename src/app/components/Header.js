@@ -34,6 +34,8 @@ export default function Header() {
           withCredentials: true,
         }
       );
+
+      localStorage.clear();
     } catch (e) {
       throw e;
     }

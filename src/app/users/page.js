@@ -13,6 +13,7 @@ export default function Home() {
   const [passwordValue, setPasswordValue] = useState("");
   const [button, setButton] = useState("Already have an account? Log in");
   const [login, setLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
 
@@ -30,6 +31,7 @@ export default function Home() {
 
   const handleButtonChange = () => {
     setLogin(!login);
+    setErrorMessage("");
 
     if (!login) {
       setButton("Don't have an account? Sign up");
@@ -60,7 +62,7 @@ export default function Home() {
 
       router.push(`/user/${id}`);
     } catch (e) {
-      throw e;
+      setErrorMessage(e.response.data.message);
     }
   };
 
@@ -87,7 +89,7 @@ export default function Home() {
 
       router.push(`/user/${id}`);
     } catch (e) {
-      throw e;
+      setErrorMessage(e.response.data.message);
     }
   };
 
@@ -101,7 +103,6 @@ export default function Home() {
       />
       <input
         value={emailValue}
-        type="email"
         onChange={handleEmailChange}
         placeholder="Email"
         className="Home-Input"
@@ -113,6 +114,11 @@ export default function Home() {
         placeholder="Password"
         className="Home-Input"
       />
+      {errorMessage !== "" ? (
+        <label className="Home-Label">{errorMessage}</label>
+      ) : (
+        ""
+      )}
       <button type="submit" className="Home-SubmitButton">
         Sign up
       </button>
@@ -123,7 +129,6 @@ export default function Home() {
     <form onSubmit={handleLoginSubmit} autoComplete="off" className="Home-Form">
       <input
         value={emailValue}
-        type="email"
         onChange={handleEmailChange}
         placeholder="Email"
         className="Home-Input"
@@ -135,6 +140,11 @@ export default function Home() {
         placeholder="Password"
         className="Home-Input"
       />
+      {errorMessage !== "" ? (
+        <label className="Home-Label">{errorMessage}</label>
+      ) : (
+        ""
+      )}
       <button type="submit" className="Home-SubmitButton">
         Log in
       </button>

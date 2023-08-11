@@ -7,9 +7,11 @@ import axios from "axios";
 import Header from "@/app/components/Header";
 
 import { useEffect, useState, useRef } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+
 import getTasks from "@/app/libs/getTasks";
 import createTask from "@/app/libs/createTask";
+import updateTask from "@/app/libs/updateTask";
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -18,8 +20,10 @@ export default function Tasks() {
   const [createInputValue, setCreateInputValue] = useState("");
   const [editInputValue, setEditInputValue] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { id } = useParams();
+  const router = useRouter();
 
   const createDivRef = useRef(null);
   const editDivRef = useRef(null);
@@ -27,8 +31,21 @@ export default function Tasks() {
   // FETCH DE TODAS LAS TASKS
   useEffect(() => {
     const fetch = async () => {
-      const fetchedTasks = await getTasks(id);
-      setTasks(fetchedTasks);
+      const data = await getTasks(id);
+
+      if (
+        data.message === "Access denied" ||
+        data.message === "Invalid Token"
+      ) {
+        router.push("/users");
+      }
+
+      if (data.tasks) {
+        setErrorMessage("");
+        setTasks(data.tasks);
+      } else {
+        setErrorMessage(data.message);
+      }
     };
 
     fetch();
@@ -43,8 +60,13 @@ export default function Tasks() {
 
       setCreateInputValue("");
 
-      const fetchedTasks = await getTasks(id);
-      setTasks(fetchedTasks);
+      const data = await getTasks(id);
+      if (data.tasks) {
+        setErrorMessage("");
+        setTasks(data.tasks);
+      } else {
+        setErrorMessage(data.message);
+      }
 
       setIsCreatingTask(!isCreatingTask);
     } else {
@@ -56,29 +78,27 @@ export default function Tasks() {
   const handleEditSubmit = async (event, taskId) => {
     event.preventDefault();
 
-    try {
-      await axios.patch(
-        `http://localhost:5000/api/tasks/${taskId}`,
-        {
-          description: editInputValue,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-    } catch (e) {
-      throw e;
+    const res = await updateTask(taskId, editInputValue);
+
+    if (res.message) {
+      setErrorMessage(res.message);
     }
 
-    const fetchedTasks = await getTasks(id);
-    setTasks(fetchedTasks);
+    const data = await getTasks(id);
+    if (data.tasks) {
+      setTasks(data.tasks);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+    } else {
+      setErrorMessage(data.message);
+    }
 
     setIsEditingTaskIndex(-1);
   };
 
   // ELIMINAR TASK
-  const handleCheckboxClick = async (taskId, index) => {
+  const handleCheckboxClick = async (taskId) => {
     setIsDisabled(true);
 
     try {
@@ -90,8 +110,14 @@ export default function Tasks() {
       throw e;
     }
 
-    const fetchedTasks = await getTasks(id);
-    setTasks(fetchedTasks);
+    const data = await getTasks(id);
+    if (data.tasks) {
+      setErrorMessage("");
+      setTasks(data.tasks);
+    } else {
+      setErrorMessage(data.message);
+      setTasks([]);
+    }
 
     setIsDisabled(false);
   };
@@ -174,7 +200,7 @@ export default function Tasks() {
           ) : (
             <label
               className="Tasks-Label"
-              for="check"
+              htmlFor="check"
               onClick={() => {
                 setIsEditingTaskIndex(index);
                 setEditInputValue(t.description);
@@ -190,8 +216,14 @@ export default function Tasks() {
 
   return (
     <>
+      {}
       <Header />
       <div className="Tasks-Container">
+        {errorMessage !== "" ? (
+          <label className="Tasks-Error">{errorMessage}</label>
+        ) : (
+          ""
+        )}
         <div className="Tasks-SubContainer">{renderedTasks}</div>
         {isCreatingTask ? (
           <div className="Tasks-CreatingContainer" ref={createDivRef}>

@@ -73,3 +73,11 @@
   color: #4d7c8a  ;
   cursor: pointer;
 }
+
+.Home-Label{
+  font-size: 0.8rem;
+  color: #bb0404;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}

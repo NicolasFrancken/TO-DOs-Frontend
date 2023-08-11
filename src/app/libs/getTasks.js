@@ -6,14 +6,10 @@ async function getTasks(id) {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
-
-    return res.data.tasks;
+    return { tasks: res.data.tasks };
   } catch (e) {
-    if (e.response.data.message) {
-      return;
-    } else {
-      throw e;
-    }
+    console.log(e);
+    return { message: e.response.data.message };
   }
 }
 
