@@ -106,7 +106,6 @@
   }
 }
 
-
 @media only screen and (max-width: 900px){
   .Header-Dropdown {
     box-sizing: border-box;
@@ -136,4 +135,3 @@
     padding: 1rem;
   }
 }
-
