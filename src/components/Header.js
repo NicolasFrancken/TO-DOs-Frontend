@@ -27,7 +27,7 @@ export default function Header() {
   const handleLogoutClick = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/users/logout",
+        "https://to-dos-backend.onrender.com/api/users/logout",
         {},
         {
           headers: { "Content-Type": "application/json" },
