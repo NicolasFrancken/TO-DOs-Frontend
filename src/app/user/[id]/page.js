@@ -102,10 +102,13 @@ export default function Tasks() {
     setIsDisabled(true);
 
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://to-dos-backend.onrender.com/api/tasks/${taskId}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
     } catch (e) {
       throw e;
     }
