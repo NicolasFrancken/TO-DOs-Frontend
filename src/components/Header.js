@@ -55,7 +55,7 @@ export default function Header() {
         <h2 className="Header-Name">Hi {name}!</h2>
         <p className="Header-Email">{email}</p>
         <button className="Header-LogoutButton" onClick={handleLogoutClick}>
-          Log out
+          Sign out
         </button>
       </div>
     </>
