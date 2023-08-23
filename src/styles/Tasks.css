@@ -20,7 +20,7 @@
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content:left;
   align-items: center;
   background-color:rgb(197, 197, 197);
   padding: 1rem;
@@ -28,9 +28,10 @@
   margin-bottom: 0.5rem;
 }
 
-input[type="checkbox"]{
+.Tasks-Checkbox{
   appearance: none;
   -webkit-appearance: none;
+  box-sizing: border-box;
   width: 2rem;
   height: 2rem;
   background-color: transparent;
@@ -41,36 +42,37 @@ input[type="checkbox"]{
   place-items: center;
 }
 
-input[type="checkbox"]:hover{
-  opacity: 0.5;
+.Tasks-Checkbox:hover{
   cursor: pointer;
 }
-input[type="checkbox"]:disabled{
+.Tasks-Checkbox:disabled{
   opacity: 0.5;
   cursor: default;
 }
 
-input[type="checkbox"]::after{
+.Tasks-Checkbox::after{
   content: "";
   width: 1.4rem;
   height: 1.4rem;
-  position: absolute;
   background-color: #292929;
   border-radius: 50%;
   opacity: 0.5;
   display: none;
 }
 
-input[type="checkbox"]:checked::after{
+.Tasks-Checkbox:checked::after{
   display: block;
 }
 
 .Tasks-Label{
+  box-sizing: border-box;
   margin: 0;
-  margin-left: 1rem;
   padding: 0;
+  padding-left: 1rem;
   font-size: 1.3rem;
-  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 2rem);
 }
 
 .Tasks-Paragraph:hover {
@@ -118,17 +120,23 @@ input[type="checkbox"]:checked::after{
 .Tasks-CreatingSubContainer{
   width: 100%;
   display: flex ;
+  justify-content: center;
+  align-items: center;
 }
 
 .Tasks-Input{
+  box-sizing: border-box;
   background-color: transparent;
   border: none;
-  margin-left: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 1.3rem;
   flex-grow: 1;
   color: #292929;
   font-weight: 500;
-  font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';}
+  font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';
+  width: 0;
+}
 
 .Tasks-Input:focus{
   outline: none;
@@ -184,4 +192,43 @@ input[type="checkbox"]:checked::after{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 1400px){
+  .Tasks-Container{
+    padding: 10rem 12rem 5rem 12rem;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .Tasks-Container{
+    padding: 7rem 2rem 2rem 2rem;
+  }
+  .Tasks-Label{
+    font-size: 1rem;
+    width: calc(100% - 1.3rem);
+  }
+  input[type="checkbox"]{
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  input[type="checkbox"]::after{
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  .Tasks-CreateButton{
+    font-size: 1rem;
+  }
+  .Tasks-SaveButton{
+    font-size: 1rem;
+  }
+  .Tasks-Input{
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 500px){
+  .Tasks-Container{
+    padding: 7rem 1rem 1rem 1rem;
+  }
 }

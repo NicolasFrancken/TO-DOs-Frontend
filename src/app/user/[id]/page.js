@@ -149,22 +149,26 @@ export default function Tasks() {
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
+        isEditingTaskIndex !== -1 &&
         editDivRef.current &&
         !editDivRef.current.contains(event.target) &&
-        event.target.closest(".Tasks-SingleContainer") === null
+        event.target.closest(".Tasks-SingleContainer") !== editDivRef.current
       ) {
         setIsEditingTaskIndex(-1);
       }
     };
 
     if (isEditingTaskIndex !== -1) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener("click", handleOutsideClick);
+      document.addEventListener("touchstart", handleOutsideClick);
     } else {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
     };
   }, [isEditingTaskIndex]);
 

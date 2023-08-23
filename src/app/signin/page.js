@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/Home.css";
+import "../../styles/Sign.css";
 
 import axios from "axios";
 
@@ -53,39 +53,39 @@ export default function Signin() {
   };
 
   return (
-    <div className="Home-Container">
+    <div className="Sign-Container">
       <form
         onSubmit={handleSigninSubmit}
         autoComplete="off"
-        className="Home-Form"
+        className="Sign-Form"
       >
         <input
           value={emailValue}
           onChange={handleEmailChange}
           placeholder="Email"
-          className="Home-Input"
+          className="Sign-Input"
         />
         <input
           value={passwordValue}
           type="password"
           onChange={handlePasswordChange}
           placeholder="Password"
-          className="Home-Input"
+          className="Sign-Input"
         />
         {errorMessage !== "" ? (
-          <label className="Home-Label">{errorMessage}</label>
+          <label className="Sign-Label">{errorMessage}</label>
         ) : (
           ""
         )}
-        <button type="submit" className="Home-SubmitButton">
-          {isLoading ? <div class="Home-Loader"></div> : "Sign in"}
+        <button type="submit" className="Sign-SubmitButton">
+          {isLoading ? <div class="Sign-Loader"></div> : "Sign in"}
         </button>
       </form>
       <button
         onClick={() => {
           router.push("/signup");
         }}
-        className="Home-Button"
+        className="Sign-Button"
       >
         Don't have an account? Sign up
       </button>

@@ -1,23 +1,23 @@
-.Home-Container {
+.Sign-Container {
   display: flex;
   flex-direction: column;
   align-self: center;
   justify-self: center;
   background-color: rgb(197, 197, 197);
-  width: 17vw;
+  width: 17rem;
   height: fit-content;
   padding: 3rem;
   border-radius: 1rem;
 }
 
-.Home-Form {
+.Sign-Form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.Home-Input {
+.Sign-Input {
   box-sizing: border-box;
   background-color: #4d7c8a;
   border: none;
@@ -32,15 +32,15 @@
   font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';
 }
 
-.Home-Input:focus {
+.Sign-Input:focus {
   outline: none;
 }
 
-.Home-Input::placeholder {
+.Sign-Input::placeholder {
   color:rgb(197, 197, 197);
 }
 
-.Home-SubmitButton {
+.Sign-SubmitButton {
   background-color: #4d7c8a;
   border: none;
   width: 100%;
@@ -56,28 +56,29 @@
   align-items: center;
 }
 
-.Home-SubmitButton:hover {
+.Sign-SubmitButton:hover {
   background-color: #4d7c8ad5;
   cursor: pointer;
 }
 
-.Home-Button {
+.Sign-Button {
   background-color: transparent;
   border: none;
   width: 100%;
   border-radius: 0.3rem;
+  padding: 0;
   padding-top: 1rem;
   color: #292929;
   transition: color 0.2s ease ;
   font-family: '__Poppins_d40877', '__Poppins_Fallback_d40877';
 }
 
-.Home-Button:hover {
+.Sign-Button:hover {
   color: #4d7c8a  ;
   cursor: pointer;
 }
 
-.Home-Label{
+.Sign-Label{
   font-size: 0.8rem;
   color: #bb0404;
   align-self: center;
@@ -85,7 +86,7 @@
   text-align: center;
 }
 
-.Home-Loader {
+.Sign-Loader {
   animation: spin 2s linear infinite;
   border: 2px solid rgb(197, 197, 197);
   border-radius: 50%;
