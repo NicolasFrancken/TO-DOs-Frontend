@@ -34,7 +34,7 @@ export default function Signup() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/users/signup",
+        "https://to-dos-backend.onrender.com/api/users/signup",
         {
           name: nameValue,
           email: emailValue,

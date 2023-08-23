@@ -6,7 +6,7 @@ async function updateTask(taskId, editInputValue) {
   }
   try {
     await axios.patch(
-      `http://localhost:5000/api/tasks/${taskId}`,
+      `https://to-dos-backend.onrender.com/api/tasks/${taskId}`,
       {
         description: editInputValue,
       },
