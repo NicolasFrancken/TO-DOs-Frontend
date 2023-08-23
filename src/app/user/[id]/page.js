@@ -1,17 +1,17 @@
 "use client";
 
-import "../../styles/Tasks.css";
+import "../../../styles/Tasks.css";
 
 import axios from "axios";
 
-import Header from "@/app/components/Header";
+import Header from "@/components/Header";
 
 import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-import getTasks from "@/app/libs/getTasks";
-import createTask from "@/app/libs/createTask";
-import updateTask from "@/app/libs/updateTask";
+import getTasks from "@/libs/getTasks";
+import createTask from "@/libs/createTask";
+import updateTask from "@/libs/updateTask";
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -21,6 +21,7 @@ export default function Tasks() {
   const [editInputValue, setEditInputValue] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
   const router = useRouter();
@@ -33,17 +34,16 @@ export default function Tasks() {
     const fetch = async () => {
       const data = await getTasks(id);
 
-      if (
-        data.message === "Access denied" ||
-        data.message === "Invalid Token"
-      ) {
-        router.push("/users");
+      if (data.status === 401) {
+        return router.push("/signin");
       }
 
       if (data.tasks) {
+        setIsLoading(false);
         setErrorMessage("");
         setTasks(data.tasks);
       } else {
+        setIsLoading(false);
         setErrorMessage(data.message);
       }
     };
@@ -214,9 +214,12 @@ export default function Tasks() {
     });
   }
 
-  return (
+  return isLoading ? (
+    <div className="Tasks-Loading">
+      <div className="loader"></div>
+    </div>
+  ) : (
     <>
-      {}
       <Header />
       <div className="Tasks-Container">
         {errorMessage !== "" ? (

@@ -40,7 +40,7 @@ export default function Header() {
       throw e;
     }
 
-    router.push(`/users`);
+    router.push(`/signin`);
   };
 
   return (

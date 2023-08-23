@@ -163,3 +163,25 @@ input[type="checkbox"]:checked::after{
   align-self: center;
   color: rgb(197, 197, 197);
 }
+
+.Tasks-Loading {
+  width: 100%;
+  height: 100%;
+  background-color: #4d7c8a;
+  display: grid;
+  place-items: center;
+}
+
+.loader {
+  animation: spin 2s linear infinite;
+  border: 7px solid rgb(197, 197, 197);
+  border-radius: 50%;
+  border-top: 7px solid #292929;
+  height: 5rem;
+  width: 5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

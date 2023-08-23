@@ -9,7 +9,11 @@ async function getTasks(id) {
     return { tasks: res.data.tasks };
   } catch (e) {
     console.log(e);
-    return { message: e.response.data.message };
+    if (e.response.status === 401) {
+      return { status: 401 };
+    } else {
+      return { message: e.response.data.message };
+    }
   }
 }
 
