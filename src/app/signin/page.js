@@ -78,7 +78,7 @@ export default function Signin() {
           ""
         )}
         <button type="submit" className="Sign-SubmitButton">
-          {isLoading ? <div class="Sign-Loader"></div> : "Sign in"}
+          {isLoading ? <div className="Sign-Loader"></div> : "Sign in"}
         </button>
       </form>
       <button

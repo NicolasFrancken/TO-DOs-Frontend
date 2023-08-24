@@ -52,7 +52,8 @@ export default function Signup() {
       router.push(`/user/${id}`);
     } catch (e) {
       setIsLoading(false);
-      setErrorMessage(e.response.data.message);
+      console.log(e);
+      // setErrorMessage(e.response.data.message);
     }
   };
 
@@ -84,7 +85,7 @@ export default function Signup() {
           ""
         )}
         <button type="submit" className="Sign-SubmitButton">
-          {isLoading ? <div class="Sign-Loader"></div> : "Sign up"}
+          {isLoading ? <div className="Sign-Loader"></div> : "Sign up"}
         </button>
       </form>
       <button
